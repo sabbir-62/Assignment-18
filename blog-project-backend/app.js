@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const router = require('./src/routes/api');
-
+require("dotenv").config();
 const app = express();
 
 //security middleware
@@ -39,7 +39,7 @@ app.use(limiter);
 
 
 //database connection
-const uri = "mongodb+srv://<username>:<password>@cluster0.d5mdcgc.mongodb.net/Blog-Project";
+const uri = process.env.Database;
 const options = {
     user: "sabbir",
     pass: "sabbir5313",
@@ -48,7 +48,7 @@ const options = {
     useUnifiedTopology: true
   };
   
-  mongoose.connect(uri, options)
+  mongoose.connect(uri)
   .then(() => {
     console.log("Successfully connected to MongoDB Atlas");
   })
